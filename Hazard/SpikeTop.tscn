@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Hazard/Hazards.gd" type="Script" id=1]
+[ext_resource path="res://Levels/Platform_Tiles.tres" type="TileSet" id=2]
+
+[node name="SpikeTop" type="Area2D"]
+collision_layer = 4
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -228, 642 )
+
+[node name="TileMap" type="TileMap" parent="Sprite"]
+position = Vector2( 228, -642 )
+scale = Vector2( 0.2, 0.2 )
+tile_set = ExtResource( 2 )
+format = 1
+tile_data = PoolIntArray( -327684, 15, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -30, -32, -52, 26, 52, 26, 39, -32 )
+
+[connection signal="body_entered" from="." to="." method="_on_SpikeTop_body_entered"]

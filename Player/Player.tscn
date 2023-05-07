@@ -1,0 +1,146 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/PlayerAnimation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GFX/Background/sky.png" type="Texture" id=3]
+[ext_resource path="res://GFX/Background/mountains foreground.png" type="Texture" id=4]
+[ext_resource path="res://GFX/Background/mountains background.png" type="Texture" id=5]
+[ext_resource path="res://GFX/Background/grass.png" type="Texture" id=6]
+[ext_resource path="res://GFX/Background/sky_background.png" type="Texture" id=7]
+[ext_resource path="res://GFX/Background/trees.png" type="Texture" id=8]
+[ext_resource path="res://GFX/Background/clouds foreground.png" type="Texture" id=9]
+[ext_resource path="res://SFX/jump.ogg" type="AudioStream" id=10]
+[ext_resource path="res://SFX/pain.ogg" type="AudioStream" id=11]
+[ext_resource path="res://SFX/big_jump.ogg" type="AudioStream" id=12]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 34.0
+height = 24.0
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 2
+emission_box_extents = Vector3( 1500, -300, 1 )
+flag_disable_z = true
+gravity = Vector3( -30, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 0.5
+color = Color( 0.862745, 0.960784, 0.94902, 1 )
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 477, 700 )
+scale = Vector2( 1.5, 1.5 )
+collision_mask = 14
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlayerAnimation" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 3 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 500, -200 )
+current = true
+zoom = Vector2( 2, 2 )
+limit_left = 0
+limit_bottom = 1080
+smoothing_enabled = true
+smoothing_speed = 3.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_offset = Vector2( -1, -1000 )
+motion_mirroring = Vector2( 1919, 1079 )
+
+[node name="Sky_background" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 7 )
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Sky" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer1"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.25, 1 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Mountain" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer2"]
+margin_right = 1920.0
+margin_bottom = 756.0
+texture = ExtResource( 5 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.4, 1 )
+motion_offset = Vector2( 0, 100 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Mountain_foreground" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer3"]
+margin_right = 1920.0
+margin_bottom = 606.0
+texture = ExtResource( 4 )
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.25, 1 )
+motion_offset = Vector2( 0, -200 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Cloud" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer6"]
+margin_right = 1920.0
+margin_bottom = 756.0
+texture = ExtResource( 9 )
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.5, 1 )
+motion_offset = Vector2( 0, 150 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Tree" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer5"]
+margin_right = 1925.0
+margin_bottom = 443.0
+texture = ExtResource( 8 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.75, 1 )
+motion_offset = Vector2( 0, 350 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Grass" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer4"]
+margin_right = 1925.0
+margin_bottom = 443.0
+texture = ExtResource( 6 )
+
+[node name="Particles2D" type="Particles2D" parent="Camera2D/ParallaxBackground"]
+position = Vector2( 1500, 10 )
+amount = 2000
+lifetime = 4.5
+speed_scale = 2.0
+process_material = SubResource( 2 )
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -5.0
+
+[node name="PainSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -5.0
+
+[node name="BoostSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[connection signal="animate" from="." to="PlayerAnimation" method="_on_Player_animate"]
