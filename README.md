@@ -1,5 +1,5 @@
 # Happy Chick
-This is Game Project in the software development course
+This is an oliginal game which designed and coded by me as it is one of the assessment of Gaming Development Project in the software development course in WhiteCliffe.
 
 ![Screen_Top](https://user-images.githubusercontent.com/79613044/236743899-4455585d-66ca-4ec8-b7de-ac7b9f24586c.png)
 
