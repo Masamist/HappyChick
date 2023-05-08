@@ -14,9 +14,13 @@ The main character is a super cute chick which is a bit lonely and bored with hi
 
 ## Gameplay Overview:
 **Gameplay:** The chick is the main character, and the player can control him. He goes left to right on the ground to collect all the items and to achieve goals. He is on a 2D side scroll platform world and the platform has gravity, the chick can go right, left, jump, and fall between platforms. There is a jump pad which creates double height of a jump. When the chick falls down the gap, he will die, and the chick goes back to the start point of the game.
-Special items - Collecting required numbers of special items is essential to clear the level. 
+
+**Special items** - Collecting required numbers of special items is essential to clear the level.
+
 **Coins** - There are many coins on the screen to collect, the chick collects as many coins as he can.
+
 **Lives** - At start, the chick has 3 lives, and every time he collects 10 coins, he gets an extra life.
+
 **Enemies** - When the chick touches an enemy he loses a life, however if he loses all the life's then he will die.
 
 Once the game starts, all the item information is displayed in the GUI at the top of the screen. The status of how many special collectable items for the current level is displayed on the top left of screen. So, the player can see the chick how many more items to collect. The number of coins that the chick collected, and the number of chick’s life's remaining are displayed at the top right. 
